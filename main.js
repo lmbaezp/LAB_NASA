@@ -17,22 +17,14 @@ fechaFoto.setAttribute("max", fechaActual);
 *****************************************************/
 const formBuscarFoto = document.getElementById('buscar-foto');
 const submitBtn = document.getElementById('submitBtn');
+const apiKey = "LeQ2cjWt8XSnsAD9fUjXUzFrchwiI3ySkAh7iUvA"; // tu API Key real
 
 formBuscarFoto.onsubmit = function (e) {
     e.preventDefault();
-    // setTimeout(() => {
-    //     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Buscando...';
-    // submitBtn.disabled = true;    
-    // }, 2000);
-
-
-    // console.log(fechaActual);
-
-    // formBuscarFoto.reset();
-    // submitBtn.textContent = 'Ver foto';
-    // submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Buscando...';
+    submitBtn.disabled = true;    
+    
     const fechaFotoValor = fechaFoto.value;
-    const apiKey = "LeQ2cjWt8XSnsAD9fUjXUzFrchwiI3ySkAh7iUvA"; // tu API Key real
     const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${fechaFotoValor}`;
     const contenedor = document.getElementById('mostrar-imagen');
     contenedor.innerHTML = '';
@@ -47,13 +39,14 @@ formBuscarFoto.onsubmit = function (e) {
                 <div class="container text-center">
                     <div class="row align-items-center">
                         <div class="col-6">
-                        <img src="${data.url}" class="img-fluid text-center" alt="...">
+                            <img src="${data.url}" class="img-fluid text-center" alt="...">
                         </div>
                         <div class="col-6">
-                        <p class="fs-3">${data.title}</p>
-                        <p>${data.date}</p>
-                        <p class="card-text">${data.explanation}</p>
-                        <button type="button" id="${idBtn}" class="btn btn-primary">Guardar en mis favoritos</button>
+                            <p class="fs-3">${data.title}</p>
+                            <p>${data.date}</p>
+                            <p class="card-text mb-3">${data.explanation}</p>
+                            <div
+                            <button type="button" id="${idBtn}" class="btn btn-primary m-5">Guardar en mis favoritos</button>
                         </div>
                     </div>
                 </div>                                
@@ -62,6 +55,10 @@ formBuscarFoto.onsubmit = function (e) {
             document.getElementById(idBtn).addEventListener('click', () => {
                 guardarFavorito(data.title, data.explanation, data.url, data.date);
             });
+
+            formBuscarFoto.reset();
+            submitBtn.textContent = 'Ver foto';
+            submitBtn.disabled = false;
 
         })
         .catch(error => console.error("Error al conectar con la API:", error))
@@ -141,6 +138,49 @@ function cargarFavoritos() {
         seccFavoritos.classList.remove('d-none');
 
     } else {
+        seccFavoritos.classList.remove('d-none');
         mensajeVacio.classList.remove('d-none');
     }
 }
+
+/*****************************************************
+ * mostrar imagen de hoy por defecto
+*****************************************************/
+document.addEventListener('DOMContentLoaded', function () {
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${fechaActual}`;
+    const contenedor = document.getElementById('mostrar-imagen');
+    contenedor.innerHTML = '';
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.date); // ver en consola
+            const idBtn = 'favBtn_' + Date.now();
+
+            contenedor.innerHTML = `
+                <div class="container text-center">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                        <img src="${data.url}" class="img-fluid text-center" alt="...">
+                        </div>
+                        <div class="col-6">
+                        <p class="fs-3">${data.title}</p>
+                        <p>${data.date}</p>
+                        <p class="card-text">${data.explanation}</p>
+                        <button type="button" id="${idBtn}" class="btn btn-primary">Guardar en mis favoritos</button>
+                        </div>
+                    </div>
+                </div>                                
+            `;
+
+            document.getElementById(idBtn).addEventListener('click', () => {
+                guardarFavorito(data.title, data.explanation, data.url, data.date);
+            });
+
+            formBuscarFoto.reset();
+            submitBtn.textContent = 'Ver foto';
+            submitBtn.disabled = false;
+
+        })
+        .catch(error => console.error("Error al conectar con la API:", error))
+});
