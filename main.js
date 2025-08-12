@@ -76,7 +76,7 @@ function guardarFavorito(ftitle, fexplanation, furl, fdate) {
     fexplanation = decodeURIComponent(fexplanation);
     furl = decodeURIComponent(furl);
     fdate = decodeURIComponent(fdate);
-    if (!favoritos.find(f => f.fecha === fecha)) {
+    if (!favoritos.find(f => f.fecha === fdate)) {
         favoritos.push({ titulo: ftitle, explicacion: fexplanation, url: furl, fecha: fdate });
         localStorage.setItem("favoritos", JSON.stringify(favoritos));
     }
@@ -111,10 +111,29 @@ function cargarFavoritos() {
                 <div class="card" style="width: 18rem;">
                     <img src="${f.url}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">${f.titulo}</h5>
-                        <p class="card-text">${f.explicacion}</p>
-                        <p class="card-text">${f.fecha}</p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#explicacionFoto">
+                        Ver más
+                        </button>
                     </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="explicacionFoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header pb-0">
+                            <div>
+                                <p class="fw-bold mb-0" id="exampleModalLabel" style="border:2px solid red;">${f.titulo}</p>
+                                <p class="mx-3"style="border:2px solid blue;">${f.fecha}</p>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>${f.explicacion}</p>
+                        </div>
+                    </div>
+                </div>
                 </div>
             `;
             seccCards.appendChild(divCard);
