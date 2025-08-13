@@ -12,25 +12,28 @@
 
 <body>
     <header id="header">
-        <p class="fs-1 fw-bold text-center p-0 m-0">FOTOS DE LA <img src="img/nasa-logo.svg" alt="logo-nasa"></p>
+        <p class="fs-1 fw-bold text-center p-0 m-0">FOTO DEL DIA <img src="img/nasa-logo.svg" alt="logo-nasa"></p>
     </header>
 
     <div id="busqueda" class="container mt-5">
         <form id="buscar-foto" class="row g-5 justify-content-center align-items-center m-3">
             <div class="col-6 mt-0">
                 <label for="fechaFoto" class="form-label">Selecciona la fecha</label>
-                <input type="date" name="fechaFoto" id="fechaFoto" value="2025-08-13">
-                <button id="submitBtn" type="submit" class="ms-3 btn btn-primary">Ver foto</button>
+                <input type="date" name="fechaFoto" id="fechaFoto" value="2025-08-13" min="1995-06-16">
+                <button id="submitBtn" type="submit" class="ms-3 btn btn-general">Ver foto</button>
             </div>
-            <button id="btnFavoritos" type="button" class="col-2 mt-0 ms-5 btn btn-primary">Mis favoritos</button>
+            <button id="btnFavoritos" type="button" class="col-2 mt-0 ms-5 btn btn-general">Mis favoritos</button>
         </form>
 
-        <div id="mostrar-imagen" class="row m-5 p-5 border border-start-0 border-end-0 border-3 border-dark rounded bg-light">
+        <div id="mostrar-imagen"
+            class="row m-5 p-5 border border-start-0 border-end-0 border-3 border-dark rounded bg-light">
         </div>
     </div>
 
-    <div id="favoritos" class="container text-center my-5 d-none">
-        <div id="cards" class="row">
+    <p id="titulo-favoritos" class="fs-1 fw-bold text-center text-decoration-underline d-none">MIS FAVORITOS</p>
+    <div id="favoritos" class="container text-center my-5 py-3 d-none border border-start-0 border-end-0 border-3 border-black rounded">
+        <div id="cards" class="row row row-cols-1 row-cols-md-3 g-4 my-5 mx-3">
+
         </div>
         <p id="mensaje-vacio" class="text-center d-none">No tienes favoritos todavía</p>
     </div>

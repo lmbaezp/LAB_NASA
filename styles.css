@@ -9,3 +9,42 @@ body {
     color: #fff;
     padding: 2rem 0;
 }
+
+.btn-general {
+    background-color: #0B3D91;
+    color: #fff;
+}
+
+.btn-general:disabled {
+    background-color: #0B3D91;
+    color: #fff;
+}
+
+.btn-general:hover{
+    background-color: #fff;
+    border: 2px solid #0B3D91;
+    color: #0B3D91;
+}
+
+.btn-guardar {
+    background-color: #Fff;
+    border: 3px solid #FC3D21;
+    color: #FC3D21;
+    font-weight: bold;
+}
+
+.btn-guardar:hover {
+    background-color: #FC3D21;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-card {
+    background-color: rgb(11, 13, 23, 0.5);
+    color: rgb(255, 255, 255, 0.7);
+}
+
+.btn-card:hover {
+    color: rgb(11, 13, 23, 0.5);
+    background-color: rgb(255, 255, 255, 0.7);
+}
