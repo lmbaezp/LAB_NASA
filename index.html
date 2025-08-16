@@ -15,24 +15,26 @@
         <p class="fs-1 fw-bold text-center p-0 m-0">FOTO DEL DIA <img src="img/nasa-logo.svg" alt="logo-nasa"></p>
     </header>
 
-    <div id="busqueda" class="container mt-5">
-        <form id="buscar-foto" class="row g-5 justify-content-center align-items-center m-3">
-            <div class="col-6 mt-0">
-                <label for="fechaFoto" class="form-label">Selecciona la fecha</label>
+    <div id="busqueda" class="d-flex flex-column mt-5">
+        <div class="d-flex flex-md-row flex-column gap-lg-5 gap-3 justify-content-center align-items-center">
+            <form id="buscar-foto" class="d-inline-flex justify-content-center align-items-center m-0">
+                <label for="fechaFoto" class="form-label m-0">Selecciona la fecha</label>
                 <input type="date" name="fechaFoto" id="fechaFoto" value="2025-08-13" min="1995-06-16">
                 <button id="submitBtn" type="submit" class="ms-3 btn btn-general">Ver foto</button>
-            </div>
-            <button id="btnFavoritos" type="button" class="col-2 mt-0 ms-5 btn btn-general">Mis favoritos</button>
-        </form>
+            </form>
+            <button id="btnFavoritos" type="button" class="col-lg-2 col-4 m-0 btn btn-general">Mis favoritos</button>
+        </div>
 
         <div id="mostrar-imagen"
-            class="row m-5 p-5 border border-start-0 border-end-0 border-3 border-dark rounded bg-light">
+            class="row m-5 p-xl-5 mt-5 px-4 py-5 border border-start-0 border-end-0 border-3 border-dark rounded bg-light">
         </div>
+
     </div>
 
-    <p id="titulo-favoritos" class="fs-1 fw-bold text-center text-decoration-underline d-none">MIS FAVORITOS</p>
-    <div id="favoritos" class="container text-center my-5 py-3 d-none border border-start-0 border-end-0 border-3 border-black rounded">
-        <div id="cards" class="row row row-cols-1 row-cols-md-3 g-4 my-5 mx-3">
+    <p id="titulo-favoritos" class="fs-1 fw-bold text-center text-decoration-underline d-none mt-5">MIS FAVORITOS</p>
+    <div id="favoritos"
+        class="container text-center my-5 mx-auto px-auto py-3 d-none border border-start-0 border-end-0 border-3 border-black rounded">
+        <div id="cards" class="row row-cols-1 row-sm-2 row-cols-md-3 g-3 my-5 mx-3">
 
         </div>
         <p id="mensaje-vacio" class="text-center d-none">No tienes favoritos todavía</p>
@@ -59,6 +61,7 @@
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
         </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
 </body>
 
